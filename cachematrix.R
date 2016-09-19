@@ -4,6 +4,27 @@
 ## makeCacheMatrix: This function creates a special "matrix" object that can cache its inverse.
 
 makeCacheMatrix <- function(x = matrix()) {
+  
+  ##  1. set the matrix
+  inv = NULL
+  set = function(y) {
+    # use `<<-` to assign a value to an object in an environment 
+    # different from the current environment. 
+    x <<- y
+    inv <<- NULL
+  }
+  
+  ## 2. get the matrix
+  get = function() x
+
+  ## 3. set the inverse
+  setinv = function(inverse) inv <<- inverse 
+
+  ## 4. get the inverse
+  getinv = function() inv
+
+  ## used as the input to cacheSolve()
+  list(set=set, get=get, setinv=setinv, getinv=getinv)
 
 }
 
